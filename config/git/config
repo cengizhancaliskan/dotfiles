@@ -6,7 +6,7 @@
 	user = cengizhancaliskan
 
 [core]
-	excludesfile = ~/.config/git/ignore
+	excludesfile = ~/.config/git/global_ignore
 	editor = code --wait
 	filemode = false
 	trustctime = false
