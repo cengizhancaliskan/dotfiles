@@ -1,4 +1,4 @@
-COMPUTER_NAME="Neo"
+COMPUTER_NAME="Django"
 LANGUAGES=(en tr)
 LOCALE="en_US@currency=EUR"
 MEASUREMENT_UNITS="Centimeters"
@@ -186,13 +186,20 @@ defaults write com.apple.finder QuitMenuItem -bool true
 defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Finder: show hidden files by default
-defaults write com.apple.finder AppleShowAllFiles -bool false
+defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: show the ~/Downloads folder in the sidebar
+defaults write com.apple.finder ShowRecentTags -bool false
+
+# Set the default location for new Finder windows to the Downloads folder
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
 
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
