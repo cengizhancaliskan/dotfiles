@@ -3,6 +3,8 @@ LANGUAGES=(en tr)
 LOCALE="en_US@currency=EUR"
 MEASUREMENT_UNITS="Centimeters"
 SCREENSHOTS_FOLDER="${HOME}/Screenshots"
+WALLPAPERS_FOLDER="${HOME}/Wallpapers"
+DOWNLOADS_FOLDER="${HOME}/Downloads"
 
 # Topics
 #
@@ -162,9 +164,17 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the ~/Screenshots folder
-mkdir -p "${SCREENSHOTS_FOLDER}"
+# Save screenshots to the ~/Screenshots folder if it doesn't exist
+if [ ! -d "${SCREENSHOTS_FOLDER}" ]; then
+  mkdir -p "${SCREENSHOTS_FOLDER}"
+fi
+
 defaults write com.apple.screencapture location -string "${SCREENSHOTS_FOLDER}"
+
+# Create a folder for wallpapers if it doesn't exist
+if [ ! -d "${WALLPAPERS_FOLDER}" ]; then
+  mkdir -p "${WALLPAPERS_FOLDER}"
+fi
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -196,10 +206,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 
 # Finder: show the ~/Downloads folder in the sidebar
 defaults write com.apple.finder ShowRecentTags -bool false
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${DOWNLOADS_FOLDER}/"
 
-# Set the default location for new Finder windows to the Downloads folder
-defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
 
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
